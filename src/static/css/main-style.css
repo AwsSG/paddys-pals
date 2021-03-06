@@ -1,0 +1,8 @@
+header > .container > .row {
+    background-color: black;
+    color: white;
+}
+
+.start-party-button {
+    align-items: center;
+}
