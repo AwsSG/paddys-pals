@@ -1,12 +1,13 @@
 header {
-    background-color: black;
     color: white;
 }
 
 footer {
-    background-color: black;
     height: 100px;
     color: white;
 }
 
 
+.sidebar {
+    min-height: 80vh;
+}
