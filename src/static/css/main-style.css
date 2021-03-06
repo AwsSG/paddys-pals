@@ -1,5 +1,12 @@
-header > .container > .row {
+header {
     background-color: black;
     color: white;
 }
+
+footer {
+    background-color: black;
+    height: 100px;
+    color: white;
+}
+
 
