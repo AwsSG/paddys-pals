@@ -1,0 +1,13 @@
+header {
+    color: white;
+}
+
+footer {
+    height: 100px;
+    color: white;
+}
+
+
+.sidebar {
+    min-height: 80vh;
+}
