@@ -50,7 +50,46 @@
     </div>
   </header>
 
- 
+ <div class="modal" id="modalcreateparty">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h4 class="modal-title">Create a Party!</h4>
+         <button type="button" class="close" data-dismiss="modal">&times;</button>
+       </div>
+       <div class="modal-body">
+         <div class="container">
+           <div class="row">
+             <div class="col">
+              <label for="party-name">Party Name</label><br>
+              <input type="text" id="party-name"><br>
+              <label for="location">Location</label><br>
+              <input type="text" id="location"><br>
+              <label for="start-time">Start Time</label><br>
+              <input type="time" id="start-time"><br>
+              <label for="finish-time">Finish Time</label><br>
+              <input type="time" id="finish-time"><br>
+              <label for="link-conference">Link to zoom party</label><br>
+              <input type="url" id="link-conference"><br>
+              <label for="party-password">Password</label><br>
+              <input type="text" id="party-password"><br>
+              <label for="description">Description</label><br>
+              <textarea name="description" id="description" cols="30" rows="10"></textarea>
+
+             </div>
+           </div>
+         </div>
+             
+       </div>
+       <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" id="submit-form" class="btn btn-primary" data-dismiss="modal" >Create Party</button>
+       </div>
+     </div>
+   </div>
+ </div>
+
+
   <!-- welcom/greatings/quotes/brief intro to the wbsite -->
 
   <main class="container">
