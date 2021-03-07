@@ -39,6 +39,12 @@
         <div class="row">
             <div class="col order-2 bg-light" id="map">
                 map goes here
+                <p>
+                {% for party in parties %}
+                    {{ party.name }}
+                    {{ party.description }}
+                {% endfor %}
+                </p>
             </div>
             <!-- side info column here -->
             <div class="col-sm-4 col-md-3 sidebar order-1 bg-dark text-light">
@@ -50,7 +56,6 @@
         </div>
 
         <!-- google maps API here -->
-       
 
     </main>
 
