@@ -1,13 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&family=Quicksand:wght@500&display=swap');
+
+
+h1, h2 {
+    font-family: 'Irish Grover', cursive;
+}
+
+p {
+    font-family: 'Quicksand', sans-serif;
+}
 header {
     color: white;
 }
 
-footer {
-    height: 100px;
-    color: white;
+.title-icon {
+    height: 2rem;
+    width: auto;
+}
+
+main {
+    min-height: 80vh;
+}
+
+.sidebar, #map {
+    height: 80vh;
+}
+
+input, textarea {
+    width: 100%;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: 700;
 }
 
 
-.sidebar {
-    min-height: 80vh;
+@media only screen and (max-width: 576px) {
+    .sidebar {
+        height: auto;
+        margin-bottom: 20px;
+    }
 }
