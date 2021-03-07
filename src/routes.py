@@ -1,12 +1,16 @@
-import os
-from flask import Flask, Blueprint, render_template
-from bson.objectid import ObjectId
+from flask import Blueprint, render_template
 from .database import mongo
+from .map_functionality import generate_map
 
 routes = Blueprint('routes', __name__)
 
 @routes.route('/')
 def index():
-    parties = mongo.db.parties.find()
-    print(parties.count())
-    return render_template('main.html', parties=parties)
+    generate_map()
+    # parties = mongo.db.parties.find()
+    return render_template('main.html')
+
+
+@routes.route('/map')
+def map():
+    return render_template('map.html')
