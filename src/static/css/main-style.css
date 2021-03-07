@@ -2,12 +2,17 @@ header {
     color: white;
 }
 
-footer {
-    height: 100px;
-    color: white;
+main {
+    min-height: 80vh;
 }
 
+.sidebar, #map {
+    height: 80vh;
+}
 
-.sidebar {
-    min-height: 80vh;
+@media only screen and (max-width: 576px) {
+    .sidebar {
+        height: auto;
+        margin-bottom: 20px;
+    }
 }
