@@ -4,22 +4,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-    crossorigin="anonymous"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="../static/css/main-style.css" />
   <link rel="icon" type="img/png" href="../static/img/clover-297753_640.png" />
   <title>Paddy's Pals</title>
 </head>
 
+<!-- 
+  The body of the page contains the header, main and footer.
+  The header contains the title, a short explanation of the page and a button to create a party.
+  The create a party button will open a modal to create a party.
+  The main section contains a sidebar with helpful tips and a section where users will be able to see parties already created by other users.
+  The footer contains our team name and credits.
+ -->
 <body class="bg-dark">
   <header class="bg-dark">
     <div class="container">
       <div class="row">
         <div class="col">
-          <h1>Paddy's Pals</h1>
+          <h1 class="page-title"><img class="title-icon" src="../static/img/clover-297753_640.png" alt="four leaf clover"> Paddy's Pals <img class="title-icon" src="../static/img/clover-297753_640.png" alt="four leaf clover"></h1>
           <p>
             Join one of many virtual parties around Ireland or create your
             own!
@@ -27,28 +40,78 @@
         </div>
         <div class="col-4 d-flex align-items-center justify-content-center">
           <div class="d-flex align-items-center">
-            <button class="btn btn-primary rounded-pill">
+            <button type="button" class="btn btn-primary rounded-pill" data-toggle="modal" data-target="#modalcreateparty">
               Create a New Party
             </button>
+           
           </div>
         </div>
       </div>
     </div>
   </header>
+
+ <div class="modal" id="modalcreateparty">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h4 class="modal-title">Create a Party!</h4>
+         <button type="button" class="close" data-dismiss="modal">&times;</button>
+       </div>
+       <div class="modal-body">
+         <div class="container">
+           <div class="row">
+             <div class="col">
+              <label for="party-name">Party Name</label><br>
+              <input type="text" id="party-name"><br>
+              <label for="location">Location</label><br>
+              <input type="text" id="location"><br>
+              <label for="start-time">Start Time</label><br>
+              <input type="time" id="start-time"><br>
+              <label for="finish-time">Finish Time</label><br>
+              <input type="time" id="finish-time"><br>
+              <label for="link-conference">Link to zoom party</label><br>
+              <input type="url" id="link-conference"><br>
+              <label for="party-password">Password</label><br>
+              <input type="text" id="party-password"><br>
+              <label for="description">Description</label><br>
+              <textarea name="description" id="description" cols="30" rows="10"></textarea>
+
+             </div>
+           </div>
+         </div>
+             
+       </div>
+       <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" id="submit-form" class="btn btn-primary" data-dismiss="modal" >Create Party</button>
+       </div>
+     </div>
+   </div>
+ </div>
+
+
   <!-- welcom/greatings/quotes/brief intro to the wbsite -->
 
   <main class="container">
     <div class="row">
-      <div class="col order-sm-2 bg-light vh-80" id="map">
-        <!-- google maps API here -->
-        map goes here
-      </div>
+	    <div class="col-12 text-light">
+                <p>
+                {% for party in parties %}
+                    {{ party.name }}
+                    {{ party.description }}
+                {% endfor %}
+                </p>
+	    </div>
+
+      
+        <iframe src='/map' class="col order-2 bg-light" id="map">
+        </iframe>
 
       <!-- side info column here -->
       <div class="col-sm-4 col-md-3 sidebar order-sm-1 bg-dark text-light text-center">
         <h2>Help</h2>
-        <button class="btn btn-success w-100" data-bs-toggle="collapse" data-bs-target="#collapse-joinparty"
-          aria-expanded="false" aria-controls="collapse-joinparty">
+        <button type="button" class="btn btn-success w-100" data-toggle="collapse" data-target="#collapse-joinparty"
+          aria-expanded="false">
           Join a party
         </button>
         <div class="collapse" id="collapse-joinparty">
@@ -60,8 +123,8 @@
           </div>
         </div>
 
-        <button class="btn btn-success w-100" type="button" data-bs-toggle="collapse"
-          data-bs-target="#collapse-createparty" aria-expanded="false">
+        <button type="button" class="btn btn-success w-100" data-toggle="collapse"
+          data-target="#collapse-createparty" aria-expanded="false">
           Create a party
         </button>
         <div class="collapse" id="collapse-createparty">
@@ -72,8 +135,8 @@
             </p>
           </div>
         </div>
-        <button class="btn btn-success w-100" type="button" data-bs-toggle="collapse"
-          data-bs-target="#collapse-requirements" aria-expanded="false">
+        <button type="button" class="btn btn-success w-100" data-toggle="collapse"
+          data-target="#collapse-requirements" aria-expanded="false">
           Requirements
         </button>
         <div class="collapse" id="collapse-requirements">
@@ -91,15 +154,25 @@
     <!-- our names/ team name -->
     <div class="container">
       <div class="row">
-        <div class="col text-light">
+        <div class="col-sm-6 text-light">
           <h1>The Boys</h1>
           <p>App created for the March 2021 Code Instituate Hackathon</p>
         </div>
-        <div class="col text-light">
-          <p><small</small></p>
+        <div class="col-sm-6 text-light text-end">
+          <p><strong>Credits</strong></p>
+          <p>
+            <small>
+              Aws Sabah Gheni, Christopher Hayden, Miro Frankovic, <br> 
+              Cezary Nakielski, Shane O'Sullivan, Borna Forsek
+            </small>
+          </p>
         </div>
       </div>
+      
     </div>
+    </div>
+
+
   </footer>
   <script src="../static/js/googleMaps.js"></script>
 </body>
