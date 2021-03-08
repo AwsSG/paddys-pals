@@ -15,6 +15,10 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- site js -->
+<script src="{{url_for('static', filename='js/geolocate.js')}}"></script>
+
   <link rel="stylesheet" href="../static/css/main-style.css" />
   <link rel="icon" type="img/png" href="../static/img/clover-297753_640.png" />
   <title>Paddy's Pals</title>
@@ -43,14 +47,14 @@
             <button type="button" class="btn btn-primary rounded-pill" data-toggle="modal" data-target="#modalcreateparty">
               Create a New Party
             </button>
-           
+
           </div>
                 </div>
             </div>
         </div>
 
     </header>
-  
+
   <div class="modal" id="modalcreateparty">
    <div class="modal-dialog">
      <div class="modal-content">
@@ -63,34 +67,30 @@
            <div class="row">
              <div class="col">
               <label for="party-name">Party Name</label><br>
-              <input type="text" id="party-name"><br>
+              <input type="text" id="party-name" required><br>
               <label for="location">Location</label><br>
-              <input type="text" id="location"><br>
+              <input type="text" id="location" required><br>
               <label for="start-time">Start Time</label><br>
-              <input type="time" id="start-time"><br>
+              <input type="time" id="start-time" required><br>
               <label for="finish-time">Finish Time</label><br>
-              <input type="time" id="finish-time"><br>
+              <input type="time" id="finish-time" required><br>
               <label for="link-conference">Link to zoom party</label><br>
-              <input type="url" id="link-conference"><br>
+              <input type="url" id="link-conference" required><br>
               <label for="party-password">Password</label><br>
-              <input type="text" id="party-password"><br>
+              <input type="text" id="party-password" required><br>
               <label for="description">Description</label><br>
-              <textarea name="description" id="description" cols="30" rows="10"></textarea>
-
+              <textarea name="description" id="description" cols="30" rows="10" required></textarea>
              </div>
            </div>
          </div>
-             
        </div>
        <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="button" id="submit-form" class="btn btn-primary" data-dismiss="modal" >Create Party</button>
+        <button type="button" onclick="saveParty()" id="submit-form" class="btn btn-primary" data-dismiss="modal" >Create Party</button>
        </div>
      </div>
    </div>
  </div>
-  
-  
     <!-- welcom/greatings/quotes/brief intro to the wbsite -->
 
     <main class="container">
@@ -104,10 +104,8 @@
                 </p>
 	    </div>
 
-      
         <iframe src='/map' class="col order-2 bg-light" id="map">
         </iframe>
-      
             <!-- side info column here -->
             <div class="col-sm-4 col-md-3 sidebar order-sm-1 bg-dark text-light text-center">
         <h2>Help</h2>
@@ -163,17 +161,15 @@
           <p><strong>Credits</strong></p>
           <p>
             <small>
-              Aws Sabah Gheni, Christopher Hayden, Miro Frankovic, <br> 
+              Aws Sabah Gheni, Christopher Hayden, Miro Frankovic, <br>
               Cezary Nakielski, Shane O'Sullivan, Borna Forsek
             </small>
           </p>
         </div>
       </div>
-      
     </div>
     </div>
 
-    <script src="../static/js/googleMaps.js"></script>
   </footer>
 
 </body>

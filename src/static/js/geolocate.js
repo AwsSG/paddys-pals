@@ -1,14 +1,38 @@
-async function getLatLong(location){
-	const apiURL = `http://open.mapquestapi.com/geocoding/v1/address?key=eTGQQAM5MpYGGPv0Gdrce3xvV5T7sTTU&location=${location}`;
+async function saveParty(){
+	let partyName = document.getElementById('party-name').value;
+	let loc = document.getElementById('location').value;
+	let startTime = document.getElementById('start-time').value;
+	let finishTime = document.getElementById('finish-time').value;
+	let videoLink = document.getElementById('link-conference').value;
+	let partyPassword = document.getElementById('party-password').value;
+	let description = document.getElementById('description').value;
 
-	await fetch(apiURL).then((response) => {
-		return response.json();
-	}).then((data)=>{
-		return processData(data.results);
-	});
+	if (partyName && loc && startTime && finishTime && videoLink && partyPassword && description ){
+
+	const apiURL = `http://open.mapquestapi.com/geocoding/v1/address?key=eTGQQAM5MpYGGPv0Gdrce3xvV5T7sTTU&location=${loc}`;
+
+	await fetch(apiURL).then((response)=>response.json()).then((data)=>{
+
+			let loc_data = processData(data.results);
+
+			post_data = {
+				'name': partyName,
+				'longitude': loc_data.latLng.lng,
+				'latitude': loc_data.latLng.lat,
+				'start_time': startTime,
+				'end_time' : finishTime,
+				'video_link' : videoLink,
+				'party_password' : partyPassword,
+				'description' : description
+			};
+			fetch('/add_party', {
+				method: 'POST',
+				headers: {'content-type': 'application/json; charset=utf-8'},
+				body: JSON.stringify(post_data),
+			});
+		});//fetch api
+	} // if 
 }
-
-
 /**
  * For each location in the results, proccess them and add them to an array
  * We can use this information to display them to the user so they can select 
@@ -25,24 +49,29 @@ async function getLatLong(location){
  */
 function processData(results){
         locations = [];
+	// For each result, process each  location
 	for (let i = 0; i < results.length; i++) {
 		locations.push(results[i].locations.forEach((loc) => {
 			locations.push(processLocation(loc));
 		}));
 	}
 
+	// Filter out any empty elements
 	locations = locations.filter(el => { return el != null && el != '';});
 
 
 	/**
 	 * TODO: Display the locations to the user to select one
+	 * For now just use the first location provided, users will have to be more specific to get
+	 * the result they want. Sorry users.
 	 */
-	return locations;
+	if (locations.length > 0){
+		return locations[0];
+	}
 }
 
-
 /**
- * Filters out the data we want to display to the user, and gives it more 
+ * Filters out the data we want to display to the user, and gives it more
  * user friendly names than provided by the mapquestapi
  */
 function processLocation(loc){
@@ -60,4 +89,3 @@ function processLocation(loc){
 	return
 }
 
-getLatLong('Dublin');
