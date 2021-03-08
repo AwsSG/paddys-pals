@@ -2,15 +2,14 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from bson.objectid import ObjectId
 from bson.json_util import dumps
 from .database import mongo
-from .map_functionality import generate_map, get_parties
+from .map_functionality import generate_map
 
 routes = Blueprint('routes', __name__)
 
 @routes.route('/')
 def index():
     generate_map()
-    parties = get_parties()
-    return render_template('main.html',parties=parties)
+    return render_template('main.html')
 
 
 @routes.route('/map')
@@ -28,6 +27,7 @@ def add_party():
     request.json['party_password'] and
     request.json['description']):
         mongo.db.parties.insert_one({
+            '_id': ObjectId(),
             'name': request.json['name'],
             'longitude': request.json['longitude'],
             'latitude': request.json['latitude'],
