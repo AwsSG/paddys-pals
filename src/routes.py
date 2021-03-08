@@ -36,7 +36,7 @@ def add_party():
             'party_password': request.json['party_password'],
             'description': request.json['description'],
             })
-    return redirect(url_for('index')) 
+    return redirect(url_for('routes.index'))
 
 @routes.route('/test_data')
 def add_parties():
