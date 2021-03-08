@@ -25,7 +25,7 @@ def generate_map():
 
     main_map = folium.Map(
             location = start_coords,
-            zoom_start = 14,
+            zoom_start = 1,
             width = '100%',
             height = '100%'
             )
