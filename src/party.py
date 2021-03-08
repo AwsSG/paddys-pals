@@ -86,3 +86,4 @@ class Party:
     def party_password(self,value):
         #TODO: Take a password and confirm password from user and check they match first.
         mongo.db.parties.update_one(self._filter, {"$set": { "password": generate_password_hash( value ) }})
+

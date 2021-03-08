@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, redirect, url_for
 from bson.objectid import ObjectId
 from .database import mongo
 from .map_functionality import generate_map, get_parties
@@ -16,6 +16,28 @@ def index():
 def map():
     return render_template('map.html')
 
+@routes.route('/add_party', methods=['POST'])
+def add_party():
+    if (request.json['name'] and
+    request.json['longitude'] and
+    request.json['latitude'] and
+    request.json['start_time'] and
+    request.json['end_time'] and
+    request.json['video_link'] and
+    request.json['party_password'] and
+    request.json['description']):
+        mongo.db.parties.insert_one({
+            'name': request.json['name'],
+            'longitude': request.json['longitude'],
+            'latitude': request.json['latitude'],
+            'start_time': request.json['start_time'],
+            'end_time': request.json['end_time'],
+            'video_link': request.json['video_link'],
+            'party_password': request.json['party_password'],
+            'description': request.json['description'],
+            })
+    return redirect(url_for('index')) 
+
 @routes.route('/test_data')
 def add_parties():
     mongo.db.parties.drop()
@@ -23,8 +45,8 @@ def add_parties():
             [
                 {'_id':ObjectId(),
                     'name': "Dublin Party",
-                    'long': "-6.266155",
-                    'lat': "53.350140",
+                    'longitude': "-6.266155",
+                    'latitude': "53.350140",
                     'start_time': "2:00pm",
                     'end_time': "3:00pm",
                     'video_link': "test.com",
@@ -33,8 +55,8 @@ def add_parties():
                 },
                 {'_id':ObjectId(),
                     'name': "Manchester Party",
-                    'long': "-2.242631",
-                    'lat': "53.480759",
+                    'longitude': "-2.242631",
+                    'latitude': "53.480759",
                     'start_time': "2:00pm",
                     'end_time': "3:00pm",
                     'video_link': "test.com",
@@ -43,8 +65,8 @@ def add_parties():
                 },
                 {'_id':ObjectId(),
                     'name': "London Party",
-                    'long': "-0.127758",
-                    'lat': "51.507351",
+                    'longitude': "-0.127758",
+                    'latitude': "51.507351",
                     'start_time': "2:00pm",
                     'end_time': "3:00pm",
                     'video_link': "test.com",

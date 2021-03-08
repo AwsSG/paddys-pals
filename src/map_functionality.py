@@ -6,7 +6,7 @@ from .party import Party
 def create_party_from_cursor(cursor):
     """ Populate a party object with data from a mongodb cursor """
     if cursor:
-        party = Party(cursor['_id'], cursor['long'], cursor['lat'],
+        party = Party(cursor['_id'], cursor['longitude'], cursor['latitude'],
             cursor['start_time'],cursor['end_time'], cursor['video_link'],cursor['party_password'], cursor['description'],cursor['name'])
 
         return party
