@@ -74,4 +74,5 @@ def add_parties():
                     'description': "Party in dublin",
                 },
             ])
+    generate_map()
     return "Added"
