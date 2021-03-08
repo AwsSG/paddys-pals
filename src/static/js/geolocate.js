@@ -16,8 +16,8 @@ async function saveParty(){
 
 			post_data = {
 				'name': partyName,
-				'longitude': loc_data.latLng.lng,
-				'latitude': loc_data.latLng.lat,
+				'longitude': loc_data.latLng.lng + "",
+				'latitude': loc_data.latLng.lat + "",
 				'start_time': startTime,
 				'end_time' : finishTime,
 				'video_link' : videoLink,
