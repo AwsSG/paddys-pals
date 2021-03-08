@@ -30,7 +30,7 @@ async function saveParty(){
 				body: JSON.stringify(post_data),
 			}).then((response)=>{
 				console.log(response);
-				//window.location.reload();
+				window.location.reload();
 			});
 		});//fetch api
 	} // if

@@ -37,6 +37,7 @@ def add_party():
             'party_password': request.json['party_password'],
             'description': request.json['description'],
             })
+    generate_map()
     return redirect('/')
 
 @routes.route('/test_data')
