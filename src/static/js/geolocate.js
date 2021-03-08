@@ -9,8 +9,7 @@ async function saveParty(){
 
 	if (partyName && loc && startTime && finishTime && videoLink && partyPassword && description ){
 
-	const apiURL = `http://open.mapquestapi.com/geocoding/v1/address?key=eTGQQAM5MpYGGPv0Gdrce3xvV5T7sTTU&location=${loc}`;
-
+	const apiURL = `https://open.mapquestapi.com/geocoding/v1/address?key=eTGQQAM5MpYGGPv0Gdrce3xvV5T7sTTU&location=${loc}`;
 	await fetch(apiURL).then((response)=>response.json()).then((data)=>{
 
 			let loc_data = processData(data.results);
@@ -29,13 +28,16 @@ async function saveParty(){
 				method: 'POST',
 				headers: {'content-type': 'application/json; charset=utf-8'},
 				body: JSON.stringify(post_data),
+			}).then((response)=>{
+				console.log(response);
+				window.location.reload();
 			});
 		});//fetch api
-	} // if 
+	} // if
 }
 /**
  * For each location in the results, proccess them and add them to an array
- * We can use this information to display them to the user so they can select 
+ * We can use this information to display them to the user so they can select
  * the correct option
  *
  * Returns and array of objects:
