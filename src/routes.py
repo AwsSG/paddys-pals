@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from bson.objectid import ObjectId
+from bson.json_util import dumps
 from .database import mongo
 from .map_functionality import generate_map, get_parties
 
@@ -76,3 +77,8 @@ def add_parties():
             ])
     generate_map()
     return "Added"
+
+@routes.route('/parties')
+def get_parties():
+    json = dumps(mongo.db.parties.find())
+    return json
