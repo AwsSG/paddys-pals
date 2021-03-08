@@ -52,6 +52,15 @@ class Party:
     def party_password(self):
         return self._party_password
 
+    @property
+    def description(self):
+        return self._description
+
+    @description.setter
+    def description (self,value):
+        self.description = value
+        mongo.db.parties.update_one(self._filter, {"$set": { "description": value }})
+
     @name.setter
     def name(self,value):
         self._name = value

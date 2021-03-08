@@ -33,9 +33,15 @@ def generate_map():
     #Add a marker for each party stored in the database
     parties = get_parties()
     for party in parties:
+        popup_content = folium.Html(f'''<b> {party.name} <p> \
+                <b> Start: </b>{party.start_time} </p> \
+                <b> End: </b>{party.end_time} </p> \
+                <p> {party.description}</p> \
+                <a href="{party.video_link}">Join here</a>''',script=True)
+        popup = folium.Popup(popup_content, max_width=2650)
         folium.Marker(
                 location = [party.latitude, party.longitude],
-                popup = party.name,
+                popup = popup
                 ).add_to(main_map)
 
     main_map.save('src/templates/map.html')
